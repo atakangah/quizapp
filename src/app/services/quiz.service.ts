@@ -11,6 +11,18 @@ export class QuizService {
   constructor(private httpClient: HttpClient) {}
 
   getRandomQuiz(): Observable<Quiz[]> {
-    return this.httpClient.get<Quiz[]>(`${environment.APIURL}/questions?apiKey=${environment.APIKEY}&category=Linux`);
+    return this.httpClient.get<Quiz[]>(
+      `${environment.APIURL}/questions?apiKey=${environment.APIKEY}&category=Linux`
+    );
+  }
+
+  getCustomizedQuiz(
+    category: string,
+    difficulty: string,
+    limit: number
+  ): Observable<Quiz[]> {
+    return this.httpClient.get<Quiz[]>(
+      `${environment.APIURL}/questions?apiKey=${environment.APIKEY}&category=${category}&difficulty=${difficulty}&limit=${limit > 100 ? 100 : limit}`
+    );
   }
 }
