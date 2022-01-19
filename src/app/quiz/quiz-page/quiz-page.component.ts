@@ -69,7 +69,6 @@ export class QuizPageComponent implements OnInit {
 
   selectAnswer(answerIndex: number, questionIndex: number): void {
     this.answers[questionIndex] = answerIndex;
-    this.quizStarted = false;
   }
 
   onSubmit(): void {
@@ -78,28 +77,29 @@ export class QuizPageComponent implements OnInit {
     this.answers.forEach((answer, index) => {
       if (
         answer === 0 &&
-        this.questions[index].correct_answers.answer_a_correct
+        this.questions[index].correct_answers.answer_a_correct === 'true'
       )
         scoreCount += 1;
       if (
         answer === 1 &&
-        this.questions[index].correct_answers.answer_b_correct
+        this.questions[index].correct_answers.answer_b_correct === 'true'
       )
         scoreCount += 1;
       if (
         answer === 2 &&
-        this.questions[index].correct_answers.answer_c_correct
+        this.questions[index].correct_answers.answer_c_correct === 'true'
       )
         scoreCount += 1;
       if (
         answer === 3 &&
-        this.questions[index].correct_answers.answer_d_correct
+        this.questions[index].correct_answers.answer_d_correct === 'true'
       )
         scoreCount += 1;
     });
 
     this.scorePercent = `${(scoreCount / this.questions.length) * 100}%`;
     this.showAnswers = true;
+    this.quizStarted = false;
     this.numAnswersCorrect = scoreCount;
   }
 }
