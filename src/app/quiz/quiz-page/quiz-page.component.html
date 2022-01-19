@@ -1,29 +1,46 @@
 <div class="card m-5">
   <div class="card-header">
     <!-- Dropdowns here -->
+    <form #questionConfigRef="ngForm">
+      <div class="row">
+        <div class="col-4">
+          <select
+            class="form-select"
+            aria-label=".form-select-sm example"
+            name="questioncategory"
+            [(ngModel)]="questionCategory"
+          >
+            <option
+              *ngFor="let category of CATEGORIES; index as categoryIndex"
+              value="{{ category }}"
+            >
+              {{ category }}
+            </option>
+          </select>
+        </div>
 
-    <div class="row">
-      <div class="col-4">
-        <select class="form-select" aria-label=".form-select-sm example">
-          <option selected>Select questions category</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <div class="col-4">
+          <select
+            class="form-select"
+            aria-label=".form-select-sm example"
+            name="questiondifficulty"
+            [(ngModel)]="questionDifficulty"
+          >
+            <option
+              *ngFor="let difficulty of DIFFICULTIES; index as difficultyIndex"
+              value="{{ difficulty }}"
+            >
+              {{ difficulty }}
+            </option>
+          </select>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-primary" [disabled]="quizStarted" (click)="onStartQuiz()">Start</button>
+        </div>
       </div>
-      <div class="col-4">
-        <select class="form-select" aria-label=".form-select-sm example">
-          <option selected>Select difficulty</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <div class="col-4">
-        <button type="button" class="btn btn-primary">Start</button>
-      </div>
-    </div>
+    </form>
   </div>
+
   <div class="card-body">
     <!-- Quiz Questions here -->
     <div class="container-fluid">
@@ -191,7 +208,7 @@
           </div>
 
           <button type="button" class="btn btn-success" (click)="onSubmit()">
-            Finish
+            Submit Answers
           </button>
         </div>
       </div>
