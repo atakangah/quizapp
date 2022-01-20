@@ -54,7 +54,10 @@ export class QuizPageComponent implements OnInit {
       .subscribe(
         (response: Quiz[]) => {
           this.questions = response;
+
           this.quizStarted = true;
+          this.showAnswers = false;
+          this.numAnswersCorrect = 0;
         },
         (error: any) => {
           if (error.status === 404) alert(error.error.error);
